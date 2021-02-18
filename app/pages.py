@@ -1,10 +1,16 @@
 
 from tkinter import ttk 
 
-def partners(root):
-    content = ttk.Frame(root)
-    ttk.Label(content, text='partners').grid(row=1)
-    return content 
+class Partner(ttk.Frame):
+    
+    def __init__(self, root, **kw):
+    
+        super().__init__(root, **kw) 
+
+        
+
+        
+
 
 def agents(root):
     content = ttk.Frame(root)
