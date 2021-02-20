@@ -27,6 +27,7 @@ class Application:
             # TODO for linux systems 
             pass    
         """ 
+
         self.root.columnconfigure(0, weight=1)
         self.root.rowconfigure(0, weight=1)
 
@@ -55,7 +56,11 @@ class Application:
     def exit_handler(self):
         if messagebox.askokcancel('Quit', 'Do you want to exit?'):
             # TODO clean up tasks 
+            self.exit_cleanup()
             self.root.destroy()
+
+    def exit_cleanup(self):
+        pass 
 
     def mainloop(self):
         self.root.mainloop()
