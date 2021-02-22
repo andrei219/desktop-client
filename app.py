@@ -27,7 +27,8 @@ class Application:
                 }, 
                 'TNotebook.Tab':{
                     'configure':{
-                        'padding': [15, 15], 
+                        'padding': [15, 3], 
+                        'width': 10,
                         'background':'white', 
                         'highlightbackground':'black',
                         'focuscolor':'white', 
@@ -96,6 +97,7 @@ class Application:
         self.tools_frame = pages.Tools()
 
         self.notebook.add(
+            
             self.partners_frame, 
             text='Partners', 
             image=self.partners_icon,
@@ -105,7 +107,7 @@ class Application:
 
         self.notebook.add(
             self.agents_frame, 
-            text='Agents', 
+            text='Agents',
             image=self.agents_icon,
             compound=LEFT, 
             padding=(20, 20)
@@ -137,7 +139,7 @@ class Application:
 
         self.notebook.add(
             self.rmas_frame, 
-            text='Rmas', 
+            text='RMAs', 
             image = self.rmas_icon, 
             compound = LEFT, 
             padding = (20, 20)
