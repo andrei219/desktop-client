@@ -13,23 +13,24 @@ class Application:
         self.root = Tk()
         
         self.style = ttk.Style(self.root)
-
+        
         self.style.theme_create(
             
-            'mystyle', parent='alt', settings={
+            'appstyle', parent='alt', settings={
                 
                 'TNotebook':{
                     'configure':{
                         'tabmargins':[2, 5, 2, 0], 
                         'background':'white', 
+                    
                     }
                 }, 
                 'TNotebook.Tab':{
                     'configure':{
-                        'padding': [10, 10], 
+                        'padding': [15, 15], 
                         'background':'white', 
                         'highlightbackground':'black',
-                        'focuscolor':'white'
+                        'focuscolor':'white', 
                     }, 
                     'map':{
                         'expand':[('selected', [3, 3, 3, 0])]
@@ -39,15 +40,23 @@ class Application:
                 'TFrame':{
                     'configure': {
                         'padding':[20, 20], 
-                        'background':'white'
+                        'background':'white', 
+                        'width':100, 
+                        'height':100
+                    }
+                }, 
+
+                'TLabel': {
+                    'configure':{
+                        'padding':[10, 2], 
+                        'bordercolor':'red',
                     }
                 }
-
             }
         )
 
-
-        self.style.theme_use('mystyle')
+    
+        self.style.theme_use('appstyle')
 
         self.basic_setup()
         self.init_notebook()
@@ -75,7 +84,7 @@ class Application:
         self.rmas_icon = PhotoImage(file=r'.\icons\rmas.png')
         self.tools_icon = PhotoImage(file=r'.\icons\tools.png')
         
-        self.notebook = ttk.Notebook(self.root)
+        self.notebook = ttk.Notebook(self.root, )
 
 
         self.partners_frame = pages.Partners()
@@ -142,7 +151,7 @@ class Application:
             padding=(20, 20)
         )
 
-        self.notebook.pack()
+        self.notebook.pack(expand='y', fill='both', padx='15', pady='15')
 
 
     def exit_handler(self):
