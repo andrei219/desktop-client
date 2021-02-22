@@ -56,7 +56,6 @@ class Application:
             }
         )
 
-    
         self.style.theme_use('appstyle')
 
         self.basic_setup()
@@ -86,7 +85,6 @@ class Application:
         self.tools_icon = PhotoImage(file=r'.\icons\tools.png')
         
         self.notebook = ttk.Notebook(self.root, )
-
 
         self.partners_frame = pages.Partners()
         self.agents_frame = pages.Agents()
