@@ -1,48 +1,52 @@
-
+from tkinter import *
 from tkinter import ttk 
 
-class Partner(ttk.Frame):
+
+import objects
+
+class Partners(ttk.Frame):
     
-    def __init__(self, root, **kw):
+    def __init__(self, **kw):
     
-        super().__init__(root, **kw) 
+        super().__init__(**kw)   
 
         
 
+class Agents(ttk.Frame):
+    
+    def __init__(self, **kw):
+
+        super().__init__(**kw)
+
+class Proformas(ttk.Frame):
+
+    def __init__(self, **kw):
+
+        super().__init__(**kw)
+
+
+class Invoices(ttk.Frame):
+
+    def __init__(self, **kw):
         
+        super().__init__(**kw)
+
+class Warehouse(ttk.Frame):
+    
+    def __init__(self, **kw):
+
+        super().__init__(**kw)
 
 
-def agents(root):
-    content = ttk.Frame(root)
-    ttk.Label(content, text='Agents').grid(row=1)
-    return content 
+class Rmas(ttk.Frame):
 
+    def __init__(self, **kw):
 
-def proformas(root):
-    content = ttk.Frame(root)
-    ttk.Label(content, text='Proformas').grid(row=1)
-    return content
+        super().__init__(**kw)
+    
+class Tools(ttk.Frame):
 
-def invoices(root):
-    content = ttk.Frame(root)
-    ttk.Label(content, text='Invoices').grid(row=1)
-    return content
+    def __init__(self, **kw):
 
-
-def warehouse(root):
-    content = ttk.Frame(root)
-    ttk.Label(content, text='Warehouse').grid(row=1, column=4)
-    return content
-
-def rma(root):
-    content = ttk.Frame(root)
-    ttk.Label(content, text='RMA').grid(row=1)
-    return content
-
-def tools(root):
-    content = ttk.Frame(root)
-    ttk.Label(content, text='RMA').grid(row=1)
-    return content
-
-
+        super().__init__(**kw)
 
