@@ -10,22 +10,25 @@ class Partners(ttk.Frame):
     
         super().__init__(**kw)   
         
+        width = int(root.winfo_screenwidth() * 0.7 )
+
         self.leftsection = Frame(
             master=self, 
             relief=RIDGE,
-            width=root.winfo_height() - 20, 
-            background='green',
+            width= int(width * 0.10),
+            #background='green',
         )
 
         self.right_section = Frame(
             master=self, 
-            width= root.winfo_width() - 20, 
+            width = int(width * 0.90),
             relief = RIDGE, 
-            background='red'
+            #background='white'
         )
         
-        self.leftsection.pack(side=LEFT, fill=Y, expand=True)
-        self.right_section.pack(side=LEFT, fill=Y, expand=True)
+
+        self.leftsection.pack(side=LEFT, fill=BOTH, padx=[1,10], pady=1,  expand=True)
+        self.right_section.pack(side=LEFT, fill=BOTH,padx=[10,1], pady=1,  expand=True)
 
 class Agents(ttk.Frame):
     

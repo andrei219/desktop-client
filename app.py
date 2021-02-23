@@ -155,12 +155,12 @@ class Application:
             padding=(20, 20)
         )
 
-        self.notebook.pack(side=TOP, expand=True, fill=BOTH, padx='15', pady='15')
+        self.notebook.pack(side=TOP, expand=True, fill=BOTH, padx='15', pady='2')
 
     def init_statusbar(self):
         
         self.statusbar_frame  = Frame(self.root, background='#33D1FF')
-        Label(self.statusbar_frame, text = 'STATUS BAR').pack()
+        Label(self.statusbar_frame, text = 'STATUS BAR', background='#33D1FF').pack()
         self.statusbar_frame.pack(side=BOTTOM, fill=BOTH, padx=15, pady=4)
 
 
