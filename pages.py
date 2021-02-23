@@ -10,7 +10,7 @@ class Partners(ttk.Frame):
     
         super().__init__(**kw)   
         
-        width = int(root.winfo_screenwidth() * 0.7 )
+        width = int(root.winfo_screenwidth() * 0.7 )    
 
         self.leftsection = Frame(
             master=self, 
