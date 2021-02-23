@@ -13,13 +13,13 @@ class Partners(ttk.Frame):
         self.leftsection = Frame(
             master=self, 
             relief=RIDGE,
-            width=100,
+            width=root.winfo_height() - 20, 
             background='green',
         )
 
         self.right_section = Frame(
             master=self, 
-            width=100, 
+            width= root.winfo_width() - 20, 
             relief = RIDGE, 
             background='red'
         )
