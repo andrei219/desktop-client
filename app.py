@@ -70,8 +70,9 @@ class Application:
             
         self.root.configure(background='white')
 
-        width = self.root.winfo_screenwidth() 
-        height = self.root.winfo_screenheight() 
+        width = int(self.root.winfo_screenwidth() * 0.7)
+        height = int(self.root.winfo_screenheight() * 0.7)
+        
         self.root.geometry(f"{width}x{height}")
 
         self.root.protocol('WM_DELETE_WINDOW', self.exit_handler)
