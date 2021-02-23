@@ -10,10 +10,11 @@ import pages
 class Application:
         
     def __init__(self):
+        
         self.root = Tk()
         
         self.style = ttk.Style(self.root)
-        
+
         self.style.theme_create(
             
             'appstyle', parent='alt', settings={
@@ -60,6 +61,8 @@ class Application:
 
         self.basic_setup()
         self.init_notebook()
+        self.init_statusbar()
+
         
     def basic_setup(self):
         
@@ -84,9 +87,9 @@ class Application:
         self.rmas_icon = PhotoImage(file=r'.\icons\rmas.png')
         self.tools_icon = PhotoImage(file=r'.\icons\tools.png')
         
-        self.notebook = ttk.Notebook(self.root, )
+        self.notebook = ttk.Notebook(self.root)
 
-        self.partners_frame = pages.Partners()
+        self.partners_frame = pages.Partners(self.root)
         self.agents_frame = pages.Agents()
         self.proformas_frame = pages.Proformas()
         self.invoices_frame = pages.Invoices()
@@ -151,16 +154,22 @@ class Application:
             padding=(20, 20)
         )
 
-        self.notebook.pack(expand='y', fill='both', padx='15', pady='15')
+        self.notebook.pack(side=TOP, expand=True, fill=BOTH, padx='15', pady='15')
+
+    def init_statusbar(self):
+        
+        self.statusbar_frame  = Frame(self.root, background='red')
+        Label(self.statusbar_frame, text = 'STATUS BAR').pack()
+        self.statusbar_frame.pack(side=BOTTOM, fill=BOTH, padx=15, pady=4)
 
 
     def exit_handler(self):
         if messagebox.askokcancel('Quit', 'Do you want to close?'):
             # TODO clean up tasks 
-            self.exit_cleanup()
+            self.cleanup()
             self.root.destroy()
 
-    def exit_cleanup(self):
+    def cleanup(self):
         pass 
 
     def mainloop(self):
