@@ -79,14 +79,14 @@ class Application:
 
     def init_notebook(self):
         # Embed if's based on what user is logging 
-        
-        self.partners_icon = PhotoImage(file=r'.\icons\partners.png')
-        self.agents_icon = PhotoImage(file=r'.\icons\agents.png')        
-        self.proformas_icon = PhotoImage(file=r'.\icons\proformas.png')
-        self.invoices_icon = PhotoImage(file=r'.\icons\invoices.png')
-        self.warehouse_icon = PhotoImage(file=r'.\icons\warehouse.png')
-        self.rmas_icon = PhotoImage(file=r'.\icons\rmas.png')
-        self.tools_icon = PhotoImage(file=r'.\icons\tools.png')
+        import os
+        self.partners_icon = PhotoImage(file=os.path.join('icons', 'partners.png'))
+        self.agents_icon = PhotoImage(file=os.path.join('icons', 'agents.png'))      
+        self.proformas_icon = PhotoImage(file=os.path.join('icons', 'proformas.png'))
+        self.invoices_icon = PhotoImage(file=os.path.join('icons', 'invoices.png'))
+        self.warehouse_icon = PhotoImage(file=os.path.join('icons','warehouse.png'))
+        self.rmas_icon = PhotoImage(file=os.path.join('icons', 'rmas.png'))
+        self.tools_icon = PhotoImage(file=os.path.join('icons', 'tools.png'))
         
         self.notebook = ttk.Notebook(self.root)
 
