@@ -63,7 +63,7 @@ class Application:
         
     def basic_setup(self):
         
-        self.root.title("Euromedia Investment Group, S.L")        
+        self.root.title("Euromedia Investment Group, S.L.")        
             
         self.root.configure(background='white')
 
@@ -147,7 +147,7 @@ class Application:
             self.tools_frame, 
             text='Tools', 
             image=self.tools_icon, 
-            compound=LEFT, 
+            compound=LEFT,
             padding=(20, 20)
         )
 
@@ -155,7 +155,7 @@ class Application:
 
 
     def exit_handler(self):
-        if messagebox.askokcancel('Quit', 'Do you want to close ?'):
+        if messagebox.askokcancel('Quit', 'Do you want to close?'):
             # TODO clean up tasks 
             self.exit_cleanup()
             self.root.destroy()
