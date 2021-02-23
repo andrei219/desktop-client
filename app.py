@@ -158,7 +158,7 @@ class Application:
 
     def init_statusbar(self):
         
-        self.statusbar_frame  = Frame(self.root, background='red')
+        self.statusbar_frame  = Frame(self.root, background='#33D1FF')
         Label(self.statusbar_frame, text = 'STATUS BAR').pack()
         self.statusbar_frame.pack(side=BOTTOM, fill=BOTH, padx=15, pady=4)
 
