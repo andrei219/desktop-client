@@ -11,9 +11,11 @@ class Partners(ttk.Frame):
     
         super().__init__(**kw)   
         
+        self.bold_active = False
+
         # LEFT SECTION : 
         self.left_section = Frame(
-            self, 
+            self,
             borderwidth = 1, 
             highlightcolor = 'black',
             relief=RAISED, 
@@ -37,7 +39,8 @@ class Partners(ttk.Frame):
         self.left_section_message = Label(
             self.left_section, 
             text = 'No filters available\nin this section', 
-            background='white'
+            background='white',
+            font = ('Bahnschrif', 10)
         )
 
         self.left_section_header_label.bind('<Button-1>', self.make_bold)
@@ -47,9 +50,9 @@ class Partners(ttk.Frame):
         self.left_section_header_label.pack(ipadx=50)
         self.left_section_message.pack(pady=30)
 
-        # Right section:
+        # Right section: 
         self.right_section = Frame(
-            self, 
+            self,
             borderwidth = 1, 
             highlightcolor = 'black', 
             relief = RAISED, 
@@ -65,7 +68,7 @@ class Partners(ttk.Frame):
         )
 
         
-        header_labels = [
+        self.header_labels = [
             
             Label(
                 self.right_section_header, 
@@ -110,25 +113,36 @@ class Partners(ttk.Frame):
                 font = ('Bahnschrif', 10), 
                 background = '#e0dcdc'
             )
-
         ]
-        
         
         self.right_section.pack(side= LEFT, fill=BOTH, expand=True)
         self.right_section_header.pack(side=TOP, fill=X )
         
-        for label in header_labels:
+        for label in self.header_labels:
+            label.bind('<Button-1>', self.make_bold)
             label.pack(side=LEFT,fill=X, expand=True)
     
 
-
     def make_bold(self, event):
         widget = event.widget
-        if 'bold' in widget['font']:
-            widget['font'] = ('Bahnschrif', 10, 'italic')
+        if 'Filters' == widget['text']:
+            if 'bold' in widget['font']:
+                widget['font'] = ('Bahnschrif', 10, 'italic')
+            else:
+                widget['font'] = ('Bahnschrif', 10, 'italic bold')
         else:
-            widget['font'] = ('Bahnschrif', 10, 'italic bold')
+            if 'bold'  not in ''.join([ label['font'] for label in self.header_labels]):
+                widget['font'] = ('Bahnschrif', 10, 'bold')
+                for label in self.header_labels:
+                    if 'bold' in label['font']:
+                        self.order_partners_by(key=label['text'])
+            else:
+                if 'bold' in widget['font']:
+                    widget['font'] = ('Bahnschrif', 10)
+                    self.order_partners_by(key=None)
 
+    def order_partners_by(self, key=None):
+        """Key == None means no order, otherwhise, map the key with a property of the partner object and order it"""
         
         
 class Agents(ttk.Frame):
