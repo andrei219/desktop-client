@@ -11,8 +11,8 @@ class Partners(ttk.Frame):
     
         super().__init__(**kw)   
         
-        self.bold_active = False
-
+        self.order_context = {}
+    
         # LEFT SECTION : 
         self.left_section = Frame(
             self,
@@ -43,8 +43,6 @@ class Partners(ttk.Frame):
             font = ('Bahnschrif', 10)
         )
 
-        self.left_section_header_label.bind('<Button-1>', self.make_bold)
-
         self.left_section.pack(side=LEFT, fill=Y, padx=[0, 20])
         self.left_section_header.pack(side=TOP, fill=X)
         self.left_section_header_label.pack(ipadx=50)
@@ -73,7 +71,7 @@ class Partners(ttk.Frame):
             Label(
                 self.right_section_header, 
                 text = 'Code', 
-                font = ('Bahnscrif', 10),
+                font = ('Bahnscrif', 10, 'bold'),
                 background = '#e0dcdc'
             ),
             Label (
@@ -110,40 +108,42 @@ class Partners(ttk.Frame):
             Label(
                 self.right_section_header, 
                 text = 'E-Mail', 
-                font = ('Bahnschrif', 10), 
+                font = ('Bahnschrift', 10), 
                 background = '#e0dcdc'
             )
         ]
         
+        for name in [label['text'] for label in self.header_labels]:
+            self.order_context[name] = 0
+
+
         self.right_section.pack(side= LEFT, fill=BOTH, expand=True)
         self.right_section_header.pack(side=TOP, fill=X )
         
         for label in self.header_labels:
-            label.bind('<Button-1>', self.make_bold)
+            label.bind('<Button-1>', self.order_request)
             label.pack(side=LEFT,fill=X, expand=True)
     
 
-    def make_bold(self, event):
-        widget = event.widget
-        if 'Filters' == widget['text']:
-            if 'bold' in widget['font']:
-                widget['font'] = ('Bahnschrif', 10, 'italic')
+    def order_request(self, event):
+        label = event.widget
+        if 'bold' in label['font']:
+            key = label['text']
+            if self.order_context[key] == 1:
+                self.orderby(key=key, ascending=False)
+                self.order_context[key] = 0 
             else:
-                widget['font'] = ('Bahnschrif', 10, 'italic bold')
+                self.orderby(key=key)
+                self.order_context[key] = 1
         else:
-            if 'bold'  not in ''.join([ label['font'] for label in self.header_labels]):
-                widget['font'] = ('Bahnschrif', 10, 'bold')
-                for label in self.header_labels:
-                    if 'bold' in label['font']:
-                        self.order_partners_by(key=label['text'])
-            else:
-                if 'bold' in widget['font']:
-                    widget['font'] = ('Bahnschrif', 10)
-                    self.order_partners_by(key=None)
+            for l in self.header_labels:
+                l['font'] = ('Bahnschrif', 10)
+            label['font'] = ('Bahnschrif', 10, 'bold')
+            self.order_request(event)
+            
 
-    def order_partners_by(self, key=None):
-        """Key == None means no order, otherwhise, map the key with a property of the partner object and order it"""
-        
+    def orderby(self, key=None, ascending=True):
+        print(f'Ordering by {key} in', 'ascending' if ascending else 'descending', 'order')
         
 class Agents(ttk.Frame):
     
