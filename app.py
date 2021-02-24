@@ -33,6 +33,7 @@ class Application:
                         'background':'white', 
                         'highlightbackground':'black',
                         'focuscolor':'white', 
+                        'font':('Bahnschrif', 11)
                     }, 
                     'map':{
                         'expand':[('selected', [3, 3, 3, 0])]
@@ -90,7 +91,7 @@ class Application:
         
         self.notebook = ttk.Notebook(self.root)
 
-        self.partners_frame = pages.Partners(self.root)
+        self.partners_frame = pages.Partners()
         self.agents_frame = pages.Agents()
         self.proformas_frame = pages.Proformas()
         self.invoices_frame = pages.Invoices()
@@ -161,7 +162,7 @@ class Application:
         
         self.statusbar_frame  = Frame(self.root, background='#33D1FF')
         Label(self.statusbar_frame, text = 'STATUS BAR', background='#33D1FF').pack()
-        self.statusbar_frame.pack(side=BOTTOM, fill=BOTH, padx=15, pady=4)
+        self.statusbar_frame.pack(side=BOTTOM, fill=BOTH, pady=[10, 0])
 
 
     def exit_handler(self):
