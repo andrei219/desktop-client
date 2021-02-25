@@ -90,14 +90,17 @@ class Application:
         self.tools_icon = PhotoImage(file=os.path.join('icons', 'tools.png'))
         
         self.notebook = ttk.Notebook(self.root)
+        
 
-        self.partners_frame = pages.Partners()
-        self.agents_frame = pages.Agents()
-        self.proformas_frame = pages.Proformas()
-        self.invoices_frame = pages.Invoices()
-        self.warehouse_frame = pages.Warehouse()
-        self.rmas_frame = pages.Rmas()
-        self.tools_frame = pages.Tools()
+        self.partners_frame = pages.Partners(self.root, self.notebook)
+        self.agents_frame = pages.Agents(self.root, self.notebook)
+        self.proformas_frame = pages.Proformas(self.root, self.notebook)
+        self.invoices_frame = pages.Invoices(self.root, self.notebook)
+        self.warehouse_frame = pages.Warehouse(self.root, self.notebook)
+        self.rmas_frame = pages.Rmas(self.root, self.notebook)
+        self.tools_frame = pages.Tools(self.root, self.notebook)
+
+        
 
         self.notebook.add(
             
@@ -123,7 +126,7 @@ class Application:
             compound = LEFT, 
             padding =(20,20)
         )
-
+        
         self.notebook.add(
             self.invoices_frame, 
             text='Invoices', 
