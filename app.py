@@ -64,6 +64,8 @@ class Application:
         self.init_notebook()
         self.init_statusbar()
 
+    def dologin(self):
+        pass 
         
     def basic_setup(self):
         
@@ -166,7 +168,6 @@ class Application:
         self.statusbar_frame  = Frame(self.root, background='#33D1FF')
         Label(self.statusbar_frame, text = 'STATUS BAR', background='#33D1FF').pack()
         self.statusbar_frame.pack(side=BOTTOM, fill=BOTH, pady=[10, 0])
-
 
     def exit_handler(self):
         if messagebox.askokcancel('Quit', 'Do you want to close?'):

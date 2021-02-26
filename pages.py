@@ -24,6 +24,38 @@ def buildlabels_list(master, l, object):
         label.pack(side=LEFT, fill=X, expand=True)
 
 
+class HeaderHandler:
+    pass 
+
+class ButtonsHandler:
+    pass 
+
+class SwitchHandler:
+    
+    def setswitch(self, master):
+        # default behaviour : do nothing 
+        Label(
+            master, 
+            text = 'Switch', 
+            background = 'white', 
+            font = ('Bahnschrif', 10)
+        ).pack(pady=10)
+
+        ttk.Separator(master, orient=HORIZONTAL).pack(fill=X)
+
+class FiltersHandler:
+    
+    def setfilters(self, master):
+        Label(
+            master, 
+            text = 'No filters available \n in this section ', 
+            background = 'white', 
+            font = ('Bahnschrif', 10)
+        ).pack(pady=40)
+
+class DynamicWidgetsHandler(HeaderHandler, ButtonsHandler, SwitchHandler, FiltersHandler):
+    pass 
+
 class BaseClass(ttk.Frame):
     
     def __init__(self, root, notebook, **kw):
@@ -95,8 +127,17 @@ class BaseClass(ttk.Frame):
             relief = RAISED, 
         )
 
-        self.listbox = Listbox(self.right_content, listvariable=self.listboxmodel, border=0)
-        self.listbox['font'] = ('Bahnschrif', 10)
+        
+        self.listbox = Listbox(
+            self.right_content, 
+            listvariable=self.listboxmodel,
+            border=0,
+            font=('Bahnschrif', 12),
+            activestyle='none'
+        )
+        
+        for i in range(0, 200, 2):
+            self.listbox.itemconfigure(i, background='#f0f0f0')
         
         self.scroll = Scrollbar(self.right_content, orient=VERTICAL, command=self.listbox.yview)
         self.listbox['yscrollcommand'] = self.scroll.set
@@ -109,8 +150,13 @@ class BaseClass(ttk.Frame):
         
         self.buttons.pack(side=BOTTOM, fill=X)
 
+        # The responsability of this is implementation is in the subclasses.
+        # In turn, these methods are definded in the concrete handlers, sintetized in the bulk
+        # dynamic handler. If one section needs specific handlers, they have to write them. 
         self.setheader()
         self.setbuttons()
+        self.setswitch(self.left)
+        self.setfilters(self.left)
 
         self.listbox.pack(side=LEFT, fill=BOTH, expand=True)
         self.scroll.pack(side=RIGHT, fill=BOTH)
@@ -146,10 +192,10 @@ class BaseClass(ttk.Frame):
         print(f'sorting by {key} in', 'asc' if ascending else 'desc')
     
 
-class Partners(BaseClass):
+class Partners(BaseClass, DynamicWidgetsHandler ):
     
     def setmodel(self):
-        self.listboxvalues = [f'Partner [{i}]' for i in range(200)]
+        self.listboxvalues = [f'\n   Partner {i}' for i in range(200)]
         self.listboxmodel = StringVar(value=self.listboxvalues)
 
     def setheader(self):
@@ -160,12 +206,16 @@ class Partners(BaseClass):
         )
 
 
-class Agents(BaseClass):
+class Agents(BaseClass, DynamicWidgetsHandler):
     
     def setmodel(self):
         self.listboxvalues = [f'Agent {i}' for i in range(200)]
         self.listboxmodel = StringVar(value=self.listboxvalues)
 
+    
+    def setswitch(self, master):
+        pass 
+    
 
     def setheader(self):
 
@@ -176,7 +226,7 @@ class Agents(BaseClass):
         )
 
 
-class Proformas(BaseClass):
+class Proformas(BaseClass, DynamicWidgetsHandler):
     
     def setmodel(self):
         self.listboxvalues = [f'Proforma {i}' for i in range(200)]
@@ -190,10 +240,10 @@ class Proformas(BaseClass):
         )
     
 
-class Invoices(BaseClass):
+class Invoices(BaseClass, DynamicWidgetsHandler):
     
     def setmodel(self):
-        self.listboxvalues = [f'Invoice {i}' for i in range(200)]
+        self.listboxvalues = [f'  Invoice {i}' for i in range(200)]
         self.listboxmodel = StringVar(value=self.listboxvalues)
 
     def setheader(self):
@@ -204,10 +254,10 @@ class Invoices(BaseClass):
         )
 
 
-class Warehouse(BaseClass):
+class Warehouse(BaseClass, DynamicWidgetsHandler):
 
     def setmodel(self):
-        self.listboxvalues = [f'Order {i}' for i in range(200)]
+        self.listboxvalues = [f'  Order {i}' for i in range(200)]
         self.listboxmodel = StringVar(value=self.listboxvalues)
 
     def setheader(self):
@@ -218,10 +268,10 @@ class Warehouse(BaseClass):
         )
 
 
-class Rmas(BaseClass):
+class Rmas(BaseClass, DynamicWidgetsHandler):
     
     def setmodel(self):
-        self.listboxvalues = [f'Rma {i}' for i in range(200)]
+        self.listboxvalues = [f'  Rma {i}' for i in range(200)]
         self.listboxmodel = StringVar(value=self.listboxvalues)
 
     def setheader(self):
@@ -232,7 +282,8 @@ class Rmas(BaseClass):
         )
 
 
-class Tools(BaseClass):
+# This class will be completely separated from the rest
+class Tools(BaseClass, DynamicWidgetsHandler):
     
     def setmodel(self):
         self.listboxvalues = [f'Rma {i}' for i in range(200)]
