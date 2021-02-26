@@ -132,11 +132,11 @@ class BaseClass(ttk.Frame):
             self.right_content, 
             listvariable=self.listboxmodel,
             border=0,
-            font=('Bahnschrif', 12),
+            font=('Bahnschrif', 13),
             activestyle='none'
         )
         
-        for i in range(0, 200, 2):
+        for i in range(1, 200, 2):
             self.listbox.itemconfigure(i, background='#f0f0f0')
         
         self.scroll = Scrollbar(self.right_content, orient=VERTICAL, command=self.listbox.yview)
