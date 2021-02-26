@@ -170,6 +170,7 @@ class BaseClass(ttk.Frame):
                 background = 'white', 
                 borderwidth = 0, 
                 image = self.image,
+                command = lambda : print('Button pressed')
             ).pack(side=LEFT, padx=20, pady=10)
 
 
