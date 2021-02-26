@@ -62,7 +62,10 @@ class BaseClass(ttk.Frame):
         
         super().__init__(**kw)
         
-        self.root = root 
+        self.root = root
+
+
+
         self.notebook = notebook    
 
         self.image = PhotoImage(file = os.path.join('icons', 'warehouse.png'))
@@ -88,7 +91,7 @@ class BaseClass(ttk.Frame):
         self.left_header_label = Label(
             self.left_header,
             text='Filters',
-            font = ('Bahnscrif', 10, 'italic'),
+            font = ('Bahnscrif', 11, 'italic bold'),
             background='#e0dcdc'
         )
 
@@ -127,27 +130,25 @@ class BaseClass(ttk.Frame):
             relief = RAISED, 
         )
 
-        
         self.listbox = Listbox(
             self.right_content, 
             listvariable=self.listboxmodel,
             border=0,
-            font=('Bahnschrif', 13),
-            activestyle='none'
+            activestyle='none', 
+            selectmode=EXTENDED
         )
-        
+        self.listbox['font'] = ('Console', 13)
+
         for i in range(1, 200, 2):
             self.listbox.itemconfigure(i, background='#f0f0f0')
         
         self.scroll = Scrollbar(self.right_content, orient=VERTICAL, command=self.listbox.yview)
         self.listbox['yscrollcommand'] = self.scroll.set
         
+
         self.right.pack(side=RIGHT, fill=BOTH, expand=True)
-        
         self.right_header.pack(side=TOP, fill=X)
-        
         self.right_content.pack(side=TOP, fill=BOTH, expand=True)
-        
         self.buttons.pack(side=BOTTOM, fill=X)
 
         # The responsability of this is implementation is in the subclasses.
@@ -195,7 +196,7 @@ class BaseClass(ttk.Frame):
 class Partners(BaseClass, DynamicWidgetsHandler ):
     
     def setmodel(self):
-        self.listboxvalues = [f'\n   Partner {i}' for i in range(200)]
+        self.listboxvalues = [f'  partner {i}' for i in range(200)]
         self.listboxmodel = StringVar(value=self.listboxvalues)
 
     def setheader(self):
