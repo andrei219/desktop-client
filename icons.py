@@ -5,8 +5,6 @@ from tkinter import PhotoImage, Tk
 from os import path
 
 
-root = Tk()
-
 add_icon = PhotoImage(file=path.join('icons', 'add.png'))
 enable_partner_icon = PhotoImage(file=path.join('icons', 'enable_partner.png'))
 add_documnent_icon = PhotoImage(file=path.join('icons', 'add_document.png'))

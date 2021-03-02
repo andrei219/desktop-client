@@ -4,6 +4,8 @@ from tkinter import ttk
 
 import os 
 
+import icons
+
 def buildlabels_list(master, l, object):
     #breakpoint()
     object.label_objects = [
